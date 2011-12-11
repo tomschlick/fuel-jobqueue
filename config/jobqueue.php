@@ -16,9 +16,14 @@
 
 return array(
 
+	'driver'			=> 'mongodb',		// job storage driver
 	'fork'				=> true,			// fork the jobs into separate processes to run more than one at a time
 	'concurrent_forks'	=> 5,				// max number of concurrently running forks
 
-);
+	'types'				=> array(
+		'beep'				=> 'Cli::beep',
+		),
+
+	);
 
 /* End of file jobqueue.php */

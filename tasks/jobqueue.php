@@ -40,7 +40,7 @@ class JobQueue
 			{
 				if(\Config::get('fork'))
 				{
-					// fork the process
+					\Cli::spawn('php oil r jobqueue:process '.$row->id());
 				}
 			}
 		}
@@ -54,5 +54,7 @@ class JobQueue
 		{
 			return null;
 		}
+
+		$job->process();
 	}
 }

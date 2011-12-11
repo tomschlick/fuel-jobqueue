@@ -11,5 +11,7 @@
  */
 
 Autoloader::add_classes(array(
-	'Job' => __DIR__.'/classes/job.php'
+	'Job' 										=> __DIR__.'/classes/job.php',
+	'Jobqueue\\JobTypeNotRegisteredException' 	=> __DIR__.'/classes/job.php',
+	'Jobqueue\\Model_Job_Driver_Mongodb' 		=> __DIR__.'/classes/model/job/driver/mongodb.php',
 ));
