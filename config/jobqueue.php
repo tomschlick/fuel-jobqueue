@@ -17,6 +17,7 @@
 return array(
 
 	'driver'			=> 'mongodb',		// job storage driver
+	'collection_name'	=> 'jobqueue',		// collection / table name
 	'fork'				=> true,			// fork the jobs into separate processes to run more than one at a time
 	'concurrent_forks'	=> 5,				// max number of concurrently running forks
 
