@@ -27,7 +27,7 @@ class Jobqueue
 {
 	public function _construct()
 	{
-		\Config::load('jobqueue');
+		\Config::load('jobqueue', true);
 	}
 
 	public static function run()
