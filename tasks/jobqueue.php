@@ -61,7 +61,7 @@ class Jobqueue
 
 	public static function process($id = NULL)
 	{
-		$job = \Job::get($id);
+		$job = \Job::get($id->_id);
 
 		if(!$job or !empty($job->started))
 		{
