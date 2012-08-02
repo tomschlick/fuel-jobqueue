@@ -69,9 +69,10 @@ class Job
 		$method = Config::get('jobqueue.types.'.$job['type']);
 		if(!is_callable($method))
 		{
+			\Cli::write('Method "'.$method.'" is not callable for job # '.$job->_id);
 			return false;
 		}
-
+		\Cli::write('Calling method "'.$method.'" for job # '.$job->_id);
 		call_user_func($method, unserialize($job['data']));
 		return true;
 	}

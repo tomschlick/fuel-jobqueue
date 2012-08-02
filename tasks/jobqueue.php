@@ -49,11 +49,11 @@ class Jobqueue
 						$count = \Job::count();
 					}
 
-					\Cli::spawn('php oil r jobqueue:process '.$row->id());
+					\Cli::spawn('php oil r jobqueue:process '.$row->_id);
 				}
 				else
 				{
-					self::process($row);
+					self::process($row->_id);
 				}
 			}
 		}
@@ -61,7 +61,9 @@ class Jobqueue
 
 	public static function process($id = NULL)
 	{
-		$job = \Job::get($id->_id);
+		ini_set('memory_limit', '2048M');
+		$job = \Job::get($id);
+		\Cli::write('Starting Job # '.$id);
 
 		if(!$job or !empty($job->started))
 		{
@@ -72,9 +74,11 @@ class Jobqueue
 		$job->save();
 		if( ! $out = \Job::process($job))
 		{
+			\Cli::write('An error occurred with job # '.$id);
 			$job->error = true;
 			$job->save();
 		}
+		\Cli::write('Removing Job # '.$id);
 		$job->delete();
 	}
 }
