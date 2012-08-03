@@ -59,13 +59,13 @@ class Jobqueue
 		}
 	}
 
-	public static function process($id = NULL)
+	public static function process($id = NULL, $force = false)
 	{
 		ini_set('memory_limit', '2048M');
 		$job = \Job::get($id);
 		\Cli::write('Starting Job # '.$id);
 
-		if(!$job or !empty($job->started))
+		if(!$force and (!$job or !empty($job->started)))
 		{
 			return null;
 		}
