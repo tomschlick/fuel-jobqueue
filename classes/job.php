@@ -58,7 +58,8 @@ class Job
 				'started'		=> false,
 				'error'			=> false,
 				),
-			'order_by'	=> array('priority' => 'desc', '_id' => 'asc')
+			'order_by'	=> array('priority' => 'desc', '_id' => 'asc'),
+			'limit'		=> 20,
 			));
 
 		return $queue;
